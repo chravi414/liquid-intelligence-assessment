@@ -1,0 +1,47 @@
+// Psudo code
+
+Extrenal Libraries used:
+1) request / axios
+2) cheerio
+3) sharp
+
+/**
+ * 1.We can make use of few libraries like request/axios to get the content of search site.
+ *
+ * 2. To parse the html response of our request, we can use a package 'cheerio'.
+ *      This helps us to extract the first dozen image source url from the response.
+ *
+ * 3. We can download the image using these urls, and make use of node js inbuilt file system to save the image.
+ *
+ * 4. We can make use of "sharp" library to scale the image to required size.
+ */
+
+//  Main function to get the scaled images from a search site
+
+function getImages(url,limit)
+    // send request to the url to get the website content
+    request(url, (err, data))
+    //  make use of cheerio to parse the response
+    $ <- cheerio.load(data)
+    //  loop through the image tags and save in ana array  till the limit is reached, in this case it is 12
+    for id, img in $('img')
+        if id < limit
+            // push image source into array
+            imageUrls.push(imageSource)
+    for (id,imageurl) in imageUrls
+        // loop through imageurls and call the download function on each image url
+        download(imageUrl,id)
+
+
+function download(imageUrl, filename) 
+    // send request to image url to get image and write content to local file.
+    request(imageUrl)
+    createWriteStream(filename)
+
+    // once the local file is created call the resize function to scale the image
+    resize(input_file, outputFile)
+
+function resize(input, output)
+    // make use of sharp package to resize the image and save it in output file path
+    sharp(inputfile).resize({width:120, height:120}).toFile(output)
+
